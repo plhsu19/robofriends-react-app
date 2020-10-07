@@ -1,10 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import logo from './logo.svg'; // change from old cra
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
+// function but not a class from old create-react-version, change to the class component.
+// A contumed component
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -20,7 +23,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+    )
+  }
 }
-
 export default App;
