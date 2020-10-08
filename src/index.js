@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
-// Hello Component is the only default item the Hello.js export
-import Hello from './Hello';
-import './Hello.css'
+import Card from './Card';
 import 'tachyons'
+import { robots } from './robots'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Hello greeting = {'Hello' + 'React Ninja!'}/>
+    <div>
+      <Card name={ robots[0].name } email={ robots[0].email } id={ robots[0].id }  />
+      <Card name={ robots[1].name } email={ robots[1].email } id={ robots[1].id }  />
+      <Card name={ robots[2].name } email={ robots[2].email } id={ robots[2].id }  />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
