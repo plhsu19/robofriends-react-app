@@ -15,17 +15,24 @@ class App extends Component {
     }
     
     // event method that used to change the state of App
-    // Will be passed to the child component that trigger the event
+    // Will be passed to the child component SearchBox that trigger the event
+    // Note: use arrow function to make the this refer to the Component where the function defined, ie, App
     onSearchChange = (event) => {
-        console.log(event.target.value);
+        // Do not change state variables directly. Always change via this.setState() function
+        this.setState({
+            searchField: event.target.value
+        });
     }
 
     render() {
+        let robotsFiltered = this.state.robots.filter(
+            robot => { return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase())}
+            );
         return (
-            <div>
+            <div className='tc'>
                 <h1>RoboFriends</h1>
                 <SearchBox searchChange={this.onSearchChange}/>
-                <CardList robots={this.state.robots}/>
+                <CardList robots={robotsFiltered}/>
             </div>
         );    
     }
