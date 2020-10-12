@@ -17,7 +17,8 @@ const CardList = ({ robots }) => {
     return (
         // the component can return only one JSX element, so wrapped them in a <div></div>
         <div>
-            {cardArray}
+            {cardArray
+}
         </div>
     )
 }
