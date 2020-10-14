@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
+import Scroll from './Scroll';
 import './App.css';
 
 // class form of component App
@@ -44,13 +45,15 @@ class App extends Component {
                 <h1 className='f1 tc'>Loading</h1>
             )
         } else {
-        return (
-            <div className='tc'>
-                <h1 className='f1'>RoboFriends</h1>
-                <SearchBox searchChange={this.onSearchChange} />
-                <CardList robots={robotsFiltered} />
-            </div>
-        );
+            return (
+                <div className='tc'>
+                    <h1 className='f1'>RoboFriends</h1>
+                    <SearchBox searchChange={this.onSearchChange} />
+                    <Scroll>
+                        <CardList robots={robotsFiltered} />
+                    </Scroll>
+                </div>
+            );
         }
     }
 }
