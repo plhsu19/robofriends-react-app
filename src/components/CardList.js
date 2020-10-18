@@ -3,6 +3,7 @@ import Card from './Card';
 
 // need to deconstruct the argument parameter bf using the variables (name, email, id)
 const CardList = ({ robots }) => {
+    // if (true) {throw new Error('CardList went wrong.')};
     const cardArray = robots.map((user, i) => {
         return (
             <Card
@@ -15,7 +16,7 @@ const CardList = ({ robots }) => {
     // console.log(cardArray);
     // console.log(cardArray[0]);
     return (
-        // the component can return only one JSX element, so wrapped them in a <div></div>
+        // the component can return only one JSX element(object), so wrapped them in a <div></div>
         <div>
             {
                 cardArray
