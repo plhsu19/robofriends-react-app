@@ -1,61 +1,53 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
 import './App.css';
 
-// class form of component App
-class App extends Component {
-    // constructor of App class
-    constructor() {
-        super();
-        this.state = {
-            robots: [],
-            searchField: ''
-        }
-    }
+// function component "App" (implemented with hooks)
+const App = () => {
 
-    componentDidMount() {
+    // use State Hook to add states
+    const [robots, setRobots] = useState([]);
+    const [searchField, setSearchField] = useState('');
+
+    // use Effect Hook to add the effect of fetching data
+    useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then(users => {
-                this.setState(
-                    { robots: users }
-                )
+                setRobots(users);
             });
-    }
+        console.log(robots, searchField);
+    }, []) // 2nd parameter to ensure fetch also occurs once after the component is first rendered.
 
     // event method that used to change the state of App 
     // Will be passed to the child component SearchBox that trigger the event
     // Note: use arrow function to make the this refer to the Component where the function defined, ie, App
-    onSearchChange = (event) => {
-        // Do not change state variables directly. Always change via this.setState() function
-        this.setState({
-            searchField: event.target.value
-        });
+    const onSearchChange = (event) => {
+        // Do not change state variables directly. Always change via this.setState() function or setVariable() from state hook
+        setSearchField(event.target.value);
     }
 
-    render() {
-        const { robots, searchField } = this.state;
-        let robotsFiltered = robots.filter(
-            robot => { return robot.name.toLowerCase().includes(searchField.toLowerCase()) }
+    let robotsFiltered = robots.filter(
+        robot => { return robot.name.toLowerCase().includes(searchField.toLowerCase()) }
+    );
+
+
+    return !robots.length ?
+        <h1 className='f1 tc'>Loading</h1> :
+        (
+            <div className='tc'>
+                <h1 className='f1'>RoboFriends</h1>
+                <SearchBox searchChange={onSearchChange} />
+                <Scroll>
+                    <ErrorBoundary>
+                        <CardList robots={robotsFiltered} />
+                    </ErrorBoundary>
+                </Scroll>
+            </div>
         );
-
-        return !robots.length ?
-            <h1 className='f1 tc'>Loading</h1> :
-            (
-                <div className='tc'>
-                    <h1 className='f1'>RoboFriends</h1>
-                    <SearchBox searchChange={this.onSearchChange} />
-                    <Scroll>
-                        <ErrorBoundary>
-                            <CardList robots={robotsFiltered} />
-                        </ErrorBoundary> 
-                    </Scroll>
-                </div>
-            );
-    }
 }
 
 export default App;
