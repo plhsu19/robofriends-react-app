@@ -11,6 +11,8 @@ const App = () => {
     // use State Hook to add states
     const [robots, setRobots] = useState([]);
     const [searchField, setSearchField] = useState('');
+    // const [count, setCount] = useState(0);
+
 
     // use Effect Hook to add the effect of fetching data
     useEffect(() => {
@@ -19,7 +21,7 @@ const App = () => {
             .then(users => {
                 setRobots(users);
             });
-        console.log(robots, searchField);
+            // console.log(count);
     }, []) // 2nd parameter to ensure fetch also occurs once after the component is first rendered.
 
     // event method that used to change the state of App 
