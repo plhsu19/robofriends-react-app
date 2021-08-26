@@ -1,3 +1,5 @@
+The simple Web App featuring search function in a table of robot friends.
+The App is implemented with React using hook functions.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
