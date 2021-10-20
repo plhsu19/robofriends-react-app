@@ -43,11 +43,9 @@ const App = () => {
             <div className='tc'>
                 <h1 className='f1'>RoboFriends</h1>
                 <SearchBox searchChange={onSearchChange} />
-                <Scroll>
                     <ErrorBoundary>
                         <CardList robots={robotsFiltered} />
                     </ErrorBoundary>
-                </Scroll>
             </div>
         );
 }
